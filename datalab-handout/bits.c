@@ -1,7 +1,7 @@
 /* 
  * CS:APP Data Lab 
  * 
- * <Please put your name and userid here>
+ * <弥梓睿 2500013062>
  * 
  * bits.c - Source file with your solutions to the Lab.
  *          This is the file you will hand in to your instructor.
@@ -178,7 +178,10 @@ NOTES:
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-  return 2;
+  /*
+  异或：x^y = (x|y) & ~(x&y) 而或可以表示为x|y = ~(~x & ~y)，与可以表示为x&y = ~(~x | ~y)
+  */
+  return ~(~(~x & y) & ~(x & ~y));
 }
 /* 
  * leastBitPos - return a mask that marks the position of the
@@ -189,7 +192,8 @@ int bitXor(int x, int y) {
  *   Rating: 2 
  */
 int leastBitPos(int x) {
-  return 2;
+  /* 操作为x & -x，其中 -x = ~x + 1 */
+  return x & (~x + 1);
 }
 /* 
  * getByte - Extract byte n from word x
@@ -200,7 +204,8 @@ int leastBitPos(int x) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
-  return 2;
+  /* 先右移8n位，再与0xFF取and 来达到取最低两位的效果 */
+  return (x >> (n << 3)) & 0xFF;
 }
 /* 
  * logicalShift - shift x to the right by n, using a logical shift
@@ -211,7 +216,8 @@ int getByte(int x, int n) {
  *   Rating: 3
  */
 int logicalShift(int x, int n) {
-  return 2;
+  /* 此处右移为算数右移 构造掩码：~(((1 << 31) >> n) << 1) 用and 把最高n位置为0 */
+  return (x >> n) & ~(((1 << 31) >> n) << 1);
 }
 /*
  * grayToBinary - convert a 31-bit Gray code to binary (0 <= x <= TMax)
@@ -227,7 +233,13 @@ int logicalShift(int x, int n) {
  *   Rating: 3
  */
 int grayToBinary(int x) {
-  return 2;
+  /* 不断用右移后的值异或自己，分别把每1、2、4、8、16位异或起来 */
+  x = x ^ (x >> 1);
+  x = x ^ (x >> 2);
+  x = x ^ (x >> 4);
+  x = x ^ (x >> 8);
+  x = x ^ (x >> 16);
+  return x;
 }
 /*
  * bitCount - returns count of number of 1's in word
@@ -236,8 +248,32 @@ int grayToBinary(int x) {
  *   Max ops: 40
  *   Rating: 4
  */
-int bitCount(int x) {
-  return 2;
+ int bitCount(int x) {
+  /* 刚学的分治算法 如下操作：
+   * 把 32 位分成相邻的组，逐步合并。
+   * 1. 每2位统计1的个数
+   * 2. 每4位合并相邻2位的结果
+   * 3. 每8位合并相邻4位的结果
+   * 4. 每16位合并相邻8位的结果
+   * 5. 合并两个16位 得到总数
+   */
+  int mask1 = 0x55 | (0x55 << 8);
+  int mask2 = 0x33 | (0x33 << 8);
+  int mask4 = 0x0F | (0x0F << 8);
+  int mask8 = 0xFF | (0xFF << 16);
+  int mask16 = 0xFF | (0xFF << 8);
+
+  mask1 = mask1 | (mask1 << 16);
+  mask2 = mask2 | (mask2 << 16);
+  mask4 = mask4 | (mask4 << 16);
+
+  x = (x & mask1) + ((x >> 1) & mask1);
+  x = (x & mask2) + ((x >> 2) & mask2);
+  x = (x & mask4) + ((x >> 4) & mask4);
+  x = (x + (x >> 8)) & mask8;
+  x = (x + (x >> 16)) & mask16;
+
+  return x;
 }
 // Two's complement arithmetic (rating sum 17)
 /* 
@@ -248,7 +284,8 @@ int bitCount(int x) {
  *   Rating: 2
  */
 int isEqual(int x, int y) {
-  return 2;
+  /* 这个好像没啥可解释的 xor运算完美区分相等和不相等 */
+  return !(x ^ y);
 }
 /* 
  * divpwr2 - Compute x/(2^n), for 0 <= n <= 30
@@ -259,7 +296,10 @@ int isEqual(int x, int y) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
-    return 2;
+  /* 负数需要加偏置再右移，才能向 0 取整 */
+  int bias = (1 << n) + ~0;
+  int sign = x >> 31;
+  return (x + (sign & bias)) >> n;
 }
 /* 
  * sign - return 1 if positive, 0 if zero, and -1 if negative
@@ -269,8 +309,9 @@ int divpwr2(int x, int n) {
  *  Max ops: 10
  *  Rating: 2
  */
-int sign(int x) {
-    return 2;
+ int sign(int x) {
+  /* (x != 0) 得到 0/1；x>>31 得到 0 或 -1 */
+  return (!!x) | (x >> 31);
 }
 /* 
  * addOK - Determine if can compute x+y without overflow
@@ -281,7 +322,11 @@ int sign(int x) {
  *   Rating: 3
  */
 int addOK(int x, int y) {
-  return 2;
+  /* 溢出 当且仅当 x,y 同号 且 x+y 与它们异号 */
+  int sum = x + y;
+  int same = ~(x ^ y);
+  int diff = x ^ sum;
+  return !((same & diff) >> 31);
 }
 /* 
  * absVal - absolute value of x
@@ -292,7 +337,9 @@ int addOK(int x, int y) {
  *   Rating: 4
  */
 int absVal(int x) {
-  return 2;
+  /* 用x >> 31 判断符号位，然后异或上符号位，再加上符号位 */
+  int sign = x >> 31;
+  return (x ^ sign) + (sign & 1);
 }
 /*
  * satSub - compute x - y, saturating to Tmax on positive overflow and
@@ -303,8 +350,23 @@ int absVal(int x) {
  *   Max ops: 30
  *   Rating: 4
  */
-int satSub(int x, int y) {
-  return 2;
+ int satSub(int x, int y) {
+  /* x - y = x + (~y + 1) */
+  int negy = ~y + 1;
+  int sub = x + negy;
+
+  int x_sign = x >> 31;
+  int y_sign = y >> 31;
+  int sub_sign = sub >> 31;
+
+  /* 标记溢出情况 */
+  int pos_over = (~x_sign) & y_sign & sub_sign;
+  int neg_over = x_sign & (~y_sign) & (~sub_sign);
+
+  int tmax = ~(1 << 31);
+  int tmin = 1 << 31;
+
+  return (sub & ~pos_over & ~neg_over) | (tmax & pos_over) | (tmin & neg_over);
 }
 // Floating point (rating sum 16)
 /* 
@@ -318,8 +380,33 @@ int satSub(int x, int y) {
  *   Max ops: 30
  *   Rating: 4
  */
-unsigned float_twice(unsigned uf) {
-  return 2;
+ unsigned float_twice(unsigned uf) {
+  unsigned sign = uf & 0x80000000u;
+  unsigned exp = (uf >> 23) & 0xFFu;
+  unsigned frac = uf & 0x7FFFFFu;
+
+  if (exp == 0xFFu) {
+    /*对特殊值：NaN 返回原值；无穷大乘 2 仍为无穷大 */
+    return uf;
+  }
+
+  if (exp == 0) {
+    /*对非规格化数：尾数左移一位，可能进入规格化 */
+    frac <<= 1;
+    if (frac & 0x800000u) {
+      /* 进位到指数域 */
+      exp = 1;
+      frac &= 0x7FFFFFu;
+    }
+    return sign | (exp << 23) | frac;
+  }
+
+  /*对规格化数：指数加 1，若溢出则变为无穷大 */
+  exp++;
+  if (exp == 0xFFu) {
+    return sign | 0x7F800000u;
+  }
+  return sign | (exp << 23) | frac;
 }
 /* 
  * float_f2i - Return bit-level equivalent of expression (int) f
@@ -333,8 +420,52 @@ unsigned float_twice(unsigned uf) {
  *   Max ops: 30
  *   Rating: 4
  */
-int float_f2i(unsigned uf) {
-  return 2;
+ int float_f2i(unsigned uf) {
+  unsigned sign = uf >> 31;
+  unsigned exp = (uf >> 23) & 0xFFu;
+  unsigned frac = uf & 0x7FFFFFu;
+  int e;
+  unsigned val;
+
+  if (exp == 0xFFu) {
+    if (frac != 0) {
+        return 0;   /* NaN */
+    }
+    if (sign) {
+        return 0x80000000;   /* 负无穷 */
+    } else {
+        return 0x7FFFFFFF;   /* 正无穷 */
+    }
+  }
+
+  e = (int)exp - 127;
+
+  if (e < 0) {
+    /* |f| < 1 return 0 */
+    return 0;
+  }
+
+  if (e > 30) {
+    if (sign) {
+        return 0x80000000;
+    } else {
+        return 0x7FFFFFFF;
+    }
+  }
+
+  val = frac | 0x800000u;
+
+  if (e <= 23) {
+    val >>= (23 - e);
+  } else {
+    val <<= (e - 23);
+  }
+
+  if (sign) {
+    return -((int)val);
+  }
+
+  return (int)val;
 }
 /* 
  * float_negpwr2 - Return bit-level equivalent of the expression 2.0^-x
@@ -349,8 +480,28 @@ int float_f2i(unsigned uf) {
  *   Max ops: 20 
  *   Rating: 4
  */
-unsigned float_negpwr2(int x) {
-    return 2;
+ unsigned float_negpwr2(int x) {
+  int e;
+
+  /* 太大 2^{-x} > 2^127 return +INF */
+  if (x < -127) {
+    return 0x7F800000u;
+  }
+
+  /* 太小 2^{-x} < 2^{-149} */
+  if (x > 149) {
+    return 0;
+  }
+
+  e = -x;
+
+  if (e >= -126) {
+    /* 规格化数 */
+    return (unsigned)((e + 127) << 23);
+  } else {
+    /* 非规格化数 */
+    return (unsigned)(1 << (e + 149));
+  }
 }
 /* 
  * float_greater - Return bit-level equivalent of expression x > y for
@@ -364,5 +515,32 @@ unsigned float_negpwr2(int x) {
  *   Rating: 4
  */
 unsigned float_greater(unsigned x, unsigned y) {
-  return 2;
+  unsigned sx = x >> 31;
+  unsigned sy = y >> 31;
+  unsigned ex = (x >> 23) & 0xFFu;
+  unsigned ey = (y >> 23) & 0xFFu;
+  unsigned fx = x & 0x7FFFFFu;
+  unsigned fy = y & 0x7FFFFFu;
+
+  /* NaN */
+  if ((ex == 0xFFu && fx != 0) || (ey == 0xFFu && fy != 0)) {
+    return 0;
+  }
+
+  /* 0 */
+  if ((ex == 0 && fx == 0) && (ey == 0 && fy == 0)) {
+    return 0;
+  }
+
+  /* 符号不同 */
+  if (sx != sy) {
+    return sx == 0;
+  }
+
+  /* 同号时把浮点位模式转成可直接比较的有序整数 */
+  if (sx == 0) {
+    return x > y;
+  } else {
+    return x < y;
+  }
 }
