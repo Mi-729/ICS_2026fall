@@ -1,17 +1,17 @@
 /* 
- * CS:APP Data Lab 
- * 
- * <弥梓睿 2500013062>
- * 
- * bits.c - Source file with your solutions to the Lab.
- *          This is the file you will hand in to your instructor.
- *
- * WARNING: Do not include the <stdio.h> header; it confuses the dlc
- * compiler. You can still use printf for debugging without including
- * <stdio.h>, although you might get a compiler warning. In general,
- * it's not good practice to ignore compiler warnings, but in this
- * case it's OK.  
- */
+* CS:APP Data Lab 
+* 
+* <弥梓睿 2500013062>
+* 
+* bits.c - Source file with your solutions to the Lab.
+*          This is the file you will hand in to your instructor.
+*
+* WARNING: Do not include the <stdio.h> header; it confuses the dlc
+* compiler. You can still use printf for debugging without including
+* <stdio.h>, although you might get a compiler warning. In general,
+* it's not good practice to ignore compiler warnings, but in this
+* case it's OK.  
+*/
 
 #if 0
 /*
@@ -161,8 +161,8 @@ NOTES:
    presume an older compiler has intent to support these features and
    define these macros by default.  */
 /* wchar_t uses Unicode 10.0.0.  Version 10.0 of the Unicode Standard is
-   synchronized with ISO/IEC 10646:2017, fifth edition, plus
-   the following additions from Amendment 1 to the fifth edition:
+   synchronized with ISO/IEC 10646:2017, fifth edition, plus the
+   following additions from Amendment 1 to the fifth edition:
    - 56 emoji characters
    - 285 hentaigana
    - 3 additional Zanabazar Square characters */
@@ -178,9 +178,6 @@ NOTES:
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-  /*
-  异或：x^y = (x|y) & ~(x&y) 而或可以表示为x|y = ~(~x & ~y)，与可以表示为x&y = ~(~x | ~y)
-  */
   return ~(~(~x & y) & ~(x & ~y));
 }
 /* 
@@ -192,7 +189,6 @@ int bitXor(int x, int y) {
  *   Rating: 2 
  */
 int leastBitPos(int x) {
-  /* 操作为x & -x，其中 -x = ~x + 1 */
   return x & (~x + 1);
 }
 /* 
@@ -204,7 +200,6 @@ int leastBitPos(int x) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
-  /* 先右移8n位，再与0xFF取and 来达到取最低两位的效果 */
   return (x >> (n << 3)) & 0xFF;
 }
 /* 
@@ -216,7 +211,6 @@ int getByte(int x, int n) {
  *   Rating: 3
  */
 int logicalShift(int x, int n) {
-  /* 此处右移为算数右移 构造掩码：~(((1 << 31) >> n) << 1) 用and 把最高n位置为0 */
   return (x >> n) & ~(((1 << 31) >> n) << 1);
 }
 /*
@@ -233,7 +227,6 @@ int logicalShift(int x, int n) {
  *   Rating: 3
  */
 int grayToBinary(int x) {
-  /* 不断用右移后的值异或自己，分别把每1、2、4、8、16位异或起来 */
   x = x ^ (x >> 1);
   x = x ^ (x >> 2);
   x = x ^ (x >> 4);
@@ -249,14 +242,6 @@ int grayToBinary(int x) {
  *   Rating: 4
  */
  int bitCount(int x) {
-  /* 刚学的分治算法 如下操作：
-   * 把 32 位分成相邻的组，逐步合并。
-   * 1. 每2位统计1的个数
-   * 2. 每4位合并相邻2位的结果
-   * 3. 每8位合并相邻4位的结果
-   * 4. 每16位合并相邻8位的结果
-   * 5. 合并两个16位 得到总数
-   */
   int mask1 = 0x55 | (0x55 << 8);
   int mask2 = 0x33 | (0x33 << 8);
   int mask4 = 0x0F | (0x0F << 8);
@@ -284,7 +269,6 @@ int grayToBinary(int x) {
  *   Rating: 2
  */
 int isEqual(int x, int y) {
-  /* 这个好像没啥可解释的 xor运算完美区分相等和不相等 */
   return !(x ^ y);
 }
 /* 
@@ -296,7 +280,6 @@ int isEqual(int x, int y) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
-  /* 负数需要加偏置再右移，才能向 0 取整 */
   int bias = (1 << n) + ~0;
   int sign = x >> 31;
   return (x + (sign & bias)) >> n;
@@ -310,7 +293,6 @@ int divpwr2(int x, int n) {
  *  Rating: 2
  */
  int sign(int x) {
-  /* (x != 0) 得到 0/1；x>>31 得到 0 或 -1 */
   return (!!x) | (x >> 31);
 }
 /* 
@@ -322,7 +304,6 @@ int divpwr2(int x, int n) {
  *   Rating: 3
  */
 int addOK(int x, int y) {
-  /* 溢出 当且仅当 x,y 同号 且 x+y 与它们异号 */
   int sum = x + y;
   int same = ~(x ^ y);
   int diff = x ^ sum;
@@ -337,7 +318,6 @@ int addOK(int x, int y) {
  *   Rating: 4
  */
 int absVal(int x) {
-  /* 用x >> 31 判断符号位，然后异或上符号位，再加上符号位 */
   int sign = x >> 31;
   return (x ^ sign) + (sign & 1);
 }
@@ -351,7 +331,6 @@ int absVal(int x) {
  *   Rating: 4
  */
  int satSub(int x, int y) {
-  /* x - y = x + (~y + 1) */
   int negy = ~y + 1;
   int sub = x + negy;
 
@@ -359,7 +338,6 @@ int absVal(int x) {
   int y_sign = y >> 31;
   int sub_sign = sub >> 31;
 
-  /* 标记溢出情况 */
   int pos_over = (~x_sign) & y_sign & sub_sign;
   int neg_over = x_sign & (~y_sign) & (~sub_sign);
 
@@ -386,22 +364,18 @@ int absVal(int x) {
   unsigned frac = uf & 0x7FFFFFu;
 
   if (exp == 0xFFu) {
-    /*对特殊值：NaN 返回原值；无穷大乘 2 仍为无穷大 */
     return uf;
   }
 
   if (exp == 0) {
-    /*对非规格化数：尾数左移一位，可能进入规格化 */
     frac <<= 1;
     if (frac & 0x800000u) {
-      /* 进位到指数域 */
       exp = 1;
       frac &= 0x7FFFFFu;
     }
     return sign | (exp << 23) | frac;
   }
 
-  /*对规格化数：指数加 1，若溢出则变为无穷大 */
   exp++;
   if (exp == 0xFFu) {
     return sign | 0x7F800000u;
@@ -426,31 +400,21 @@ int absVal(int x) {
   unsigned frac = uf & 0x7FFFFFu;
   int e;
   unsigned val;
+  int ival;
 
   if (exp == 0xFFu) {
-    if (frac != 0) {
-        return 0;   /* NaN */
-    }
-    if (sign) {
-        return 0x80000000;   /* 负无穷 */
-    } else {
-        return 0x7FFFFFFF;   /* 正无穷 */
-    }
+    return 0x80000000;
   }
 
-  e = (int)exp - 127;
+  e = exp;
+  e = e - 127;
 
   if (e < 0) {
-    /* |f| < 1 return 0 */
     return 0;
   }
 
   if (e > 30) {
-    if (sign) {
-        return 0x80000000;
-    } else {
-        return 0x7FFFFFFF;
-    }
+    return 0x80000000;
   }
 
   val = frac | 0x800000u;
@@ -461,11 +425,13 @@ int absVal(int x) {
     val <<= (e - 23);
   }
 
+  ival = val;
+
   if (sign) {
-    return -((int)val);
+    return -ival;
   }
 
-  return (int)val;
+  return ival;
 }
 /* 
  * float_negpwr2 - Return bit-level equivalent of the expression 2.0^-x
@@ -483,12 +449,10 @@ int absVal(int x) {
  unsigned float_negpwr2(int x) {
   int e;
 
-  /* 太大 2^{-x} > 2^127 return +INF */
   if (x < -127) {
     return 0x7F800000u;
   }
 
-  /* 太小 2^{-x} < 2^{-149} */
   if (x > 149) {
     return 0;
   }
@@ -496,11 +460,9 @@ int absVal(int x) {
   e = -x;
 
   if (e >= -126) {
-    /* 规格化数 */
-    return (unsigned)((e + 127) << 23);
+    return (e + 127) << 23;
   } else {
-    /* 非规格化数 */
-    return (unsigned)(1 << (e + 149));
+    return 1 << (e + 149);
   }
 }
 /* 
@@ -522,22 +484,18 @@ unsigned float_greater(unsigned x, unsigned y) {
   unsigned fx = x & 0x7FFFFFu;
   unsigned fy = y & 0x7FFFFFu;
 
-  /* NaN */
   if ((ex == 0xFFu && fx != 0) || (ey == 0xFFu && fy != 0)) {
     return 0;
   }
 
-  /* 0 */
   if ((ex == 0 && fx == 0) && (ey == 0 && fy == 0)) {
     return 0;
   }
 
-  /* 符号不同 */
   if (sx != sy) {
     return sx == 0;
   }
 
-  /* 同号时把浮点位模式转成可直接比较的有序整数 */
   if (sx == 0) {
     return x > y;
   } else {
