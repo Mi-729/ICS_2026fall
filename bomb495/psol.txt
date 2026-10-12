@@ -1,0 +1,6 @@
+Will you be the next Jinpei Matsuda?
+0 1 1 2 3 5
+0 l 726
+4 8
+gamfeg
+5 4 2 1 6 3

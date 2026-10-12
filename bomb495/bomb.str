@@ -1,0 +1,468 @@
+/lib64/ld-linux-x86-64.so.2
+mfUa
+fgets
+strcpy
+gethostname
+stdin
+sleep
+puts
+free
+exit
+fflush
+memmove
+fopen
+socket
+strlen
+__ctype_b_loc
+read
+gethostbyname
+stdout
+malloc
+__libc_start_main
+stderr
+fprintf
+__cxa_finalize
+sprintf
+getenv
+close
+signal
+connect
+__isoc99_sscanf
+memcpy
+strcmp
+__errno_location
+write
+alarm
+libc.so.6
+GLIBC_2.3
+GLIBC_2.7
+GLIBC_2.14
+GLIBC_2.34
+GLIBC_2.2.5
+_ITM_deregisterTMCloneTable
+__gmon_start__
+_ITM_registerTMCloneTable
+PTE1
+u+UH
+! tcH
+D$(PH
+D$$PL
+L$0L
+D$4H
+|$ H
+T$L
+T$L
+D$H
+~)USH
+T$H
+9\$
+ATUSH
+P[]A\
+ATUSH
+[]A\
+ATUSH
+[]A\
+t8E
+AUATUSH
+[]A\A]
+***truncH
+ated***
+ATUSH
+[]A\
+AUATUSH
+[]A\A]
+AUATUSH
+[]A\A]
+AUATUSH
+[]A\A]
+AWAVAUATUSH
+L$(H
+T$ H
+D$ H
+Error: CH
+lient unI
+able to H
+read heaI
+ders froH
+m AutolaI
+ AutolabH
+ server
+[]A\A]A^A_
+Error: CH
+lient unI
+able to H
+create sI
+ socket
+Error: DH
+NS is unI
+able to H
+resolve I
+Autolab H
+server aI
+address
+Error: UH
+nable toI
+ connectH
+ to the I
+ AutolabH
+ server
+Error: RH
+esult stI
+ring tooH
+ large. I
+IncreaseH
+ SUBMITRI
+_MAXBUF
+Error: RH
+esult stI
+ring conH
+tains anI
+ illegalH
+ or unprI
+intable H
+characteI
+G?er.
+Error: UH
+serid stI
+ring conH
+tains anI
+ illegalH
+ or unprI
+intable H
+characteI
+G?er.
+Error: CH
+lient unI
+able to H
+write toI
+ the AutH
+olab serI
+G0ver
+Error: CH
+lient unI
+able to H
+read firI
+st headeH
+r from AI
+ AutolabH
+ server
+Error: CH
+lient unI
+able to H
+read staI
+tus messH
+age fromI
+ AutolabH
+ server
+L$ H
+ATUSH
+[]A\
+Error: CH
+lient unH
+able to H
+create sH
+ socket
+Error: DH
+NS is unH
+able to H
+resolve H
+ server H
+address
+autolab.H
+pku-ics.H
+Error: UH
+nable toH
+ connectH
+ to servH
+%s: Error: Couldn't open %s
+Usage: %s [<input_file>]
+That's number 2. Keep going!
+Halfway there! Good job!
+Good work! On to the next...
+Don't try to make the bomb run on your local machine!(*/w
+Welcome to Mr.Gin's little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day! Mua ha ha ha!
+Phase 1 defused. How about the next one?
+So you got that one. Try this one.
+%d %d %d %d %d %d %s
+%d %c %d
+sabres
+NothingThatHasMeaning1sEasy...
+000Gcu{FqgupvGpvgt3pvqItqypWrNkhg0
+Will you be the next Jinpei Matsuda?
+Great! You've defused the secret stage!
+At this very point of triumph, we count on you to defeat Mr. Gin utterly!
+But he took flight and hid in a place where no one knows...
+May the force be with you! For all time. Always.
+maduiersnfotvbyl
+So you think you can stop the bomb with ctrl-c, do you?
+Initialization error: Running on an illegal host [1]
+ERROR: Input string is too large.
+Don't try to make the bomb not explode on your local machine!(*/w
+Your instructor has been notified.
+Curses, you've found the secret phase!
+But finding it and solving it are quite different...
+And I can't give you a clear answer yet. You need to measure it yourself...
+Do you think you really trigger the secret phase? Mua ha ha ha!
+Congratulations! You've defused the bomb and saved your machine!
+Your instructor has been notified and will verify your solution.
+Well...
+OK. :-)
+Invalid phase%s
+Initialization error:
+defused
+exploded
+%d:%s:%s:%d:%s
+BOOM!!!
+The bomb has blown up.
+%d %d %d %d %d %d
+Error: Premature EOF on stdin
+GRADE_BOMB
+Error: Input line too long
+ics_2019
+localhost
+spring
+summer
+autumn
+winter
+autolab.pku.edu.cn
+netserver
+icsdancer
+Program timed out after %d seconds
+GET /courses/%s/assessments/%s/log_submit?user=%s&result=%s HTTP/1.0
+Host: %s
+Error: HTTP request failed with error %d: %s
+%%%02X
+%s %d %[a-zA-z ]
+autolab.pku-ics.com
+AUTORESULT_STRING=%s
+;*3$"
+bomblab
+ics2026
+1927177
+pku-2500013062@users.autolab.invalid
+GCC: (Debian 12.2.0-14+deb12u1) 12.2.0
+;!$9
+printf
+__off_t
+_IO_read_ptr
+_chain
+size_t
+_shortbuf
+_IO_buf_base
+long long unsigned int
+read_line
+free
+long long int
+phase_defused
+_fileno
+_IO_read_end
+_flags
+_IO_buf_end
+_cur_column
+_IO_codecvt
+_old_offset
+infile
+initialize_bomb
+_IO_marker
+stdin
+_freeres_buf
+_IO_write_ptr
+short unsigned int
+_IO_save_base
+_lock
+_flags2
+_mode
+__builtin_puts
+_IO_write_end
+_IO_lock_t
+_IO_FILE
+fopen
+_markers
+unsigned char
+short int
+_IO_wide_data
+_vtable_offset
+exit
+input
+__off64_t
+_IO_read_base
+_IO_save_end
+__pad5
+_unused2
+argv
+phase_1
+phase_2
+phase_3
+phase_4
+phase_5
+phase_6
+_IO_backup_base
+argc
+_freeres_list
+main
+_IO_write_base
+GNU C17 12.2.0 -mtune=generic -march=x86-64 -ggdb -Og -fasynchronous-unwind-tables
+bomb.c
+/app/courses/ics2026/bomblab/src
+/usr/lib/gcc/x86_64-linux-gnu/12/include
+/usr/include/x86_64-linux-gnu/bits
+/usr/include/x86_64-linux-gnu/bits/types
+/usr/include
+stddef.h
+types.h
+struct_FILE.h
+stdio.h
+stdlib.h
+phases.h
+support.h
+<built-in>
+Scrt1.o
+__abi_tag
+crtstuff.c
+deregister_tm_clones
+__do_global_dtors_aux
+completed.0
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+__frame_dummy_init_array_entry
+bomb.c
+phases.c
+array.0
+support.c
+sig_handler
+driverlib.c
+rio_readinitb
+urlencode
+rio_writen
+rio_read
+rio_readlineb
+__FRAME_END__
+_DYNAMIC
+__GNU_EH_FRAME_HDR
+_GLOBAL_OFFSET_TABLE_
+skip
+getenv@GLIBC_2.2.5
+phase_defused
+free@GLIBC_2.2.5
+__libc_start_main@GLIBC_2.34
+__errno_location@GLIBC_2.2.5
+_ITM_deregisterTMCloneTable
+stdout@GLIBC_2.2.5
+strcpy@GLIBC_2.2.5
+puts@GLIBC_2.2.5
+stdin@GLIBC_2.2.5
+alohomora
+write@GLIBC_2.2.5
+abracadabra
+_edata
+_fini
+strlen@GLIBC_2.2.5
+num_input_strings
+phase_5
+initialize_bomb_solve
+blank_line
+submitr
+transition_table
+phase_3
+phase_1
+invalid_phase
+init_driver
+alarm@GLIBC_2.2.5
+close@GLIBC_2.2.5
+check_synchronizing_sequence
+node3
+read@GLIBC_2.2.5
+fgets@GLIBC_2.2.5
+explode_bomb
+node1
+__data_start
+strcmp@GLIBC_2.2.5
+signal@GLIBC_2.2.5
+gethostbyname@GLIBC_2.2.5
+node5
+course
+fprintf@GLIBC_2.2.5
+__gmon_start__
+__dso_handle
+memcpy@GLIBC_2.14
+_IO_stdin_used
+host_table
+emulate_fsm
+authkey
+func4
+string_length
+malloc@GLIBC_2.2.5
+fflush@GLIBC_2.2.5
+__isoc99_sscanf@GLIBC_2.7
+_end
+secret_phase
+infile
+sigalrm_handler
+init_timeout
+__bss_start
+userid
+main
+memmove@GLIBC_2.2.5
+read_line
+strings_not_equal
+phase_4
+fopen@GLIBC_2.2.5
+phase_6
+scratch
+driver_post
+send_msg
+phase_2
+gethostname@GLIBC_2.2.5
+sprintf@GLIBC_2.2.5
+exit@GLIBC_2.2.5
+bomb_id
+connect@GLIBC_2.2.5
+__TMC_END__
+_ITM_registerTMCloneTable
+node2
+node4
+sleep@GLIBC_2.2.5
+node6
+__cxa_finalize@GLIBC_2.2.5
+_init
+read_six_numbers
+initialize_bomb
+__ctype_b_loc@GLIBC_2.3
+stderr@GLIBC_2.2.5
+socket@GLIBC_2.2.5
+.symtab
+.strtab
+.shstrtab
+.interp
+.note.gnu.property
+.note.gnu.build-id
+.note.ABI-tag
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rela.dyn
+.rela.plt
+.init
+.plt.got
+.text
+.fini
+.rodata
+.eh_frame_hdr
+.eh_frame
+.init_array
+.fini_array
+.dynamic
+.got.plt
+.data
+.bss
+.comment
+.debug_aranges
+.debug_info
+.debug_abbrev
+.debug_line
+.debug_str
+.debug_line_str
+.debug_loclists
